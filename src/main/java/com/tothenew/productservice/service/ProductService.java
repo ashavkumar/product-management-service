@@ -11,5 +11,7 @@ public interface ProductService {
 
     Product findProductById(int id);
 
+    Product updateProduct(int id, Product product);
+
     List<Product> deleteProduct(int id);
 }

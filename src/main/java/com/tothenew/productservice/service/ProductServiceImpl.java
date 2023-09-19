@@ -33,6 +33,21 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Product updateProduct(int id, Product product) {
+        System.out.println("update Product:Product Service Impl:Start");
+        Product existingProduct = this.productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found with id :" + id));
+        existingProduct.setId(product.getId());
+        existingProduct.setName(product.getName());
+        existingProduct.setPrice(product.getPrice());
+        existingProduct.setQuantity(product.getQuantity());
+        existingProduct.setFeedback(product.getFeedback());
+        System.out.println("update Product:Product Service Impl:End");
+        System.out.println("Existing Product:" + existingProduct);
+        return productRepository.save(existingProduct);
+    }
+
+    @Override
     public List<Product> deleteProduct(int id) {
         Product existingProduct = this.productRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found with id :" + id));
